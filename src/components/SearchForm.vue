@@ -4,7 +4,7 @@ import LocationIcon from '@/icons/LocationIcon.vue'
 </script>
 
 <template>
-  <div class="h-full flex justify-center items-center">
+  <div class="min-h-screen flex justify-center items-center">
     <div class="w-full max-w-[800px]">
       <label
         for="search"
