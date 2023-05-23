@@ -5,7 +5,7 @@ import LocationIcon from '@/icons/LocationIcon.vue'
 
 <template>
   <div class="h-full flex justify-center items-center">
-    <form class="w-full max-w-[800px]">
+    <div class="w-full max-w-[800px]">
       <label
         for="search"
         class="w-full px-4 gap-x-4 rounded-md grid items-center shadow-lg grid-cols-[min-content_minmax(100px,_1fr)_40px] bg-white"
@@ -20,6 +20,16 @@ import LocationIcon from '@/icons/LocationIcon.vue'
         />
         <LocationIcon />
       </label>
-    </form>
+      <section class="text-white">
+        <h1 class="text-center py-8 text-2xl font-bold">Saved Cities:</h1>
+        <ul class="flex flex-wrap gap-4 justify-center">
+          <li class="font-semibold select-none bg-black bg-opacity-20 px-8 py-3">Rabat, Morocco</li>
+          <li class="font-semibold select-none bg-black bg-opacity-20 px-8 py-3">Rabat, Morocco</li>
+          <li class="font-semibold select-none bg-black bg-opacity-20 px-8 py-3">Rabat, Morocco</li>
+          <li class="font-semibold select-none bg-black bg-opacity-20 px-8 py-3">Rabat, Morocco</li>
+          <li class="font-semibold select-none bg-black bg-opacity-20 px-8 py-3">Rabat, Morocco</li>
+        </ul>
+      </section>
+    </div>
   </div>
 </template>

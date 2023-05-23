@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import WeatherView from '@/views/WeatherView.vue'
+import SearchForm from '@/components/SearchForm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,8 +7,9 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: WeatherView
-    }
+      component: SearchForm
+    },
+    { path: '/:city', name: 'city', component: () => import('@/components/WeatherViewer.vue') }
   ]
 })
 
