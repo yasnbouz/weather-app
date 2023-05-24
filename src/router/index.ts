@@ -9,7 +9,11 @@ const router = createRouter({
       name: 'home',
       component: SearchForm
     },
-    { path: '/:city', name: 'city', component: () => import('@/components/WeatherViewer.vue') }
+    {
+      path: '/weather',
+      name: 'weather',
+      component: () => import('@/components/WeatherViewer.vue')
+    }
   ]
 })
 
