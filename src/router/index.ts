@@ -6,12 +6,12 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'search',
       component: SearchForm
     },
     {
-      path: '/weather',
-      name: 'weather',
+      path: '/location/:id',
+      name: 'location',
       component: () => import('@/components/WeatherViewer.vue')
     }
   ]

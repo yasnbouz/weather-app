@@ -22,8 +22,6 @@
     ]
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.18",
-    "@tanstack/vue-query": "^4.29.7",
     "@vueuse/core": "^10.1.2",
     "dayjs": "^1.11.7",
     "vue": "^3.3.2",
