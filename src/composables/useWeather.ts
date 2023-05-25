@@ -17,6 +17,7 @@ export default function useWeather() {
         isLoading.value = true
         const result = await getWeatherDataBySearch({ search: search.value })
         data.value = result
+        isError.value = false
         isLoading.value = false
       }
     } catch (err) {
@@ -34,6 +35,7 @@ export default function useWeather() {
           coord: { lat: newCoord?.latitude, lon: newCoord?.longitude }
         })
         data.value = result
+        isError.value = false
         isLoading.value = false
       } catch (err) {
         isError.value = true

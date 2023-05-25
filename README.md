@@ -3,12 +3,13 @@
 The Weather App is a web application that displays weather information for a user's selected location. The application utilizes Vue.js, Weather API, routes for searching and viewing weather by location, and Vuex for keeping track of saved cities. The user can search for a location by entering the city and state, and the application will display the current weather information for that location. The user can also
 save a location to their list of saved cities, and the list will persist even after the user closes the application.
 
-See [Production URL](https://weather-app-liart-pi.vercel.app/).
+See [Production URL](https://weather-app-nu-jet.vercel.app//).
 
 ## Features
 
 - ⚡️ Vue 3
 - ⛑ TypeScript
+- 👀 Vuex next time I'll use 🍍 pinia
 - 📏 ESLint — To find and fix problems in your code
 - 💖 Prettier — Code Formatter for consistent style
 - 🐶 Husky — For running scripts before committing
@@ -52,7 +53,7 @@ Well, I've enjoyed building this app using Vue.js and Typescript, I really like 
 The hard thing I struggled with was when I started using "vuex" which used the wrong package.json export field, which break my building app.
 So I overcame this bug by patching the "vuex" package.
 
-The Patched vuex will be installed immediately after `pnpm i`
+- Note: The Patched vuex will be installed immediately after `pnpm i`
 
 ```
 diff --git a/package.json b/package.json
