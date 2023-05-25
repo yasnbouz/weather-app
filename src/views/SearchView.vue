@@ -39,13 +39,13 @@ function clearData() {
 <template>
   <main class="min-h-screen flex justify-center items-center">
     <div class="w-full max-w-[800px]">
-      <div v-if="isError" class="bg-red-300">
+      <div v-if="isError" class="bg-red-300 rounded-md my-4">
         <p class="text-xl p-8 text-red-800">{{ error }}</p>
       </div>
       <div v-if="isLoading" class="text-xl text-white text-center h-full grid place-items-center">
         <p>Loading...</p>
       </div>
-      <div v-else-if="data">
+      <div v-else-if="data && !isError">
         <nav class="mb-4">
           <button type="button" aria-label="back to home page" @click="clearData">
             <HomeIcon />
