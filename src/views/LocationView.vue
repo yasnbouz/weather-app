@@ -3,7 +3,7 @@
     <nav class="mb-4">
       <router-link to="/">
         <HomeIcon
-          class="w-12 h-12 p-2 bg-gray-200 text-gray-900 shadow hover:bg-gray-300 transition-colors rounded-xl"
+          class="w-14 h-14 p-2 bg-gray-200 text-gray-900 shadow hover:bg-gray-300 transition-colors rounded-xl"
         />
       </router-link>
     </nav>

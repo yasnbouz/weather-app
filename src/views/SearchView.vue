@@ -7,10 +7,24 @@ import SearchForm from '@/components/SearchForm.vue'
 import useWeather from '@/composables/useWeather.js'
 import CityList from '@/components/CityList.vue'
 import HomeIcon from '@/icons/HomeIcon.vue'
-const { search, isLoading, isError, error, data, current, upcoming, hourly } = useWeather()
+import { onMounted } from 'vue'
+const {
+  search,
+  isLoading,
+  isError,
+  error,
+  data,
+  current,
+  upcoming,
+  hourly,
+  handleGeoLocationWeather
+} = useWeather()
 const store = useStore()
 const cities = computed(() => store.state.cities)
 
+onMounted(() => {
+  handleGeoLocationWeather()
+})
 const filteredCities = computed(() => {
   return cities.value
     .map((city: IWeatherData) => city.current.locationName)
@@ -35,7 +49,7 @@ function clearData() {
         <nav class="mb-4">
           <button type="button" @click="clearData">
             <HomeIcon
-              class="w-12 h-12 p-2 bg-gray-200 text-gray-900 shadow hover:bg-gray-300 transition-colors rounded-xl"
+              class="w-14 h-14 p-2 bg-gray-200 text-gray-900 shadow hover:bg-gray-300 transition-colors rounded-xl"
             />
           </button>
         </nav>

@@ -11,7 +11,7 @@ function onClickCity(city: string) {
 }
 </script>
 <template>
-  <section class="text-white">
+  <section v-if="cities.length > 0" class="text-white">
     <h1 class="text-center py-8 text-2xl font-bold">Saved Cities:</h1>
     <ul class="flex flex-wrap gap-4 justify-center">
       <li v-for="city in cities" v-bind:key="city">
