@@ -16,8 +16,15 @@ defineProps<{ weatherData: IWeatherData }>()
           <p class="text-lg">{{ item.day }}</p>
           <time class="text-gray-300">{{ item.date }}</time>
         </div>
-        <span class="">
-          <img width="70" height="70" :src="item.iconURL" :alt="item.description" />
+        <span>
+          <img
+            width="70"
+            height="70"
+            :src="item.iconURL"
+            :alt="item.description"
+            loading="lazy"
+            decoding="async"
+          />
         </span>
         <div class="flex flex-col items-center">
           <p class="text-lg">{{ item.min }}°</p>

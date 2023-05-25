@@ -43,7 +43,7 @@ function clearData() {
         <p class="text-xl p-8 text-red-800">{{ error }}</p>
       </div>
       <div v-if="isLoading" class="text-xl text-white text-center h-full grid place-items-center">
-        Loading...
+        <p>Loading...</p>
       </div>
       <div v-else-if="data">
         <nav class="mb-4">
