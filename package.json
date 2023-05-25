@@ -57,5 +57,10 @@
     "vite": "^4.3.5",
     "vitest": "^0.31.0",
     "vue-tsc": "^1.6.4"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "vuex@4.0.2": "patches/vuex@4.0.2.patch"
+    }
   }
 }
