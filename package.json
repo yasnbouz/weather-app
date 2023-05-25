@@ -1,7 +1,10 @@
 {
   "name": "weather-app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "author": {
+    "name": "@yasnbouz"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -20,6 +23,10 @@
       "yarn lint",
       "yarn format"
     ]
+  },
+  "packageManager": "pnpm@8.1.1",
+  "engines": {
+    "node": ">=16"
   },
   "dependencies": {
     "@vueuse/core": "^10.1.2",
