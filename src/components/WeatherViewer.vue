@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-export interface WeatherData {
+import { useStore } from 'vuex'
+export interface IWeatherData {
   current: {
     date: string
     locationName: string
@@ -15,11 +16,22 @@ export interface WeatherData {
   hourly: any[]
   upcoming: any[]
 }
+const props = defineProps<{ weatherData: IWeatherData }>()
 
-defineProps<{ weatherData: WeatherData }>()
+const store = useStore()
+
+function saveLocation() {
+  store.commit('saveLocation', props.weatherData)
+}
 </script>
 <template>
   <main class="text-white">
+    <button
+      @click="saveLocation"
+      class="absolute right-0 uppercase top-0 bg-yellow-500 transition-colors hover:bg-yellow-600 text-md font-bold rounded-bl-xl rounded-br-xl text-black px-4 py-2"
+    >
+      save location
+    </button>
     <section>
       <h1 class="text-4xl font-bold py-2">{{ weatherData.current.locationName }}</h1>
       <p class="text-lg">{{ weatherData.current.date }}</p>

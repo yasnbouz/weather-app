@@ -5,18 +5,17 @@ import * as dayjs from 'dayjs'
 
 export default function useWeather() {
   const search = ref('')
-  const debouncedSearch = useDebounce(search, 1000)
   const coord = ref(null)
   const data = ref(null)
   const isLoading = ref(false)
   const isError = ref(false)
   const error = ref({})
 
-  watch(debouncedSearch, async (newSearch) => {
+  async function handleSearchChange() {
     try {
-      isLoading.value = true
-      if (debouncedSearch.value.length > 0) {
-        const result = await getWeatherDataBySearch({ search: newSearch })
+      if (search.value.length > 0) {
+        isLoading.value = true
+        const result = await getWeatherDataBySearch({ search: search.value })
         data.value = result
         isLoading.value = false
       }
@@ -26,7 +25,7 @@ export default function useWeather() {
       isLoading.value = false
       error.value = err
     }
-  })
+  }
   watch(
     () => coord.value,
     async (newCoord) => {
@@ -56,8 +55,8 @@ export default function useWeather() {
   }
   function generateLocationName() {
     let name = 'Your Location'
-    if (debouncedSearch.value) {
-      name = debouncedSearch.value
+    if (search.value) {
+      name = search.value
         .replace(/,/g, '')
         .split(' ')
         .map((word, i) =>
@@ -144,9 +143,9 @@ export default function useWeather() {
     })
   })
   return {
-    debouncedSearch,
     search,
     handleGeoLocationWeather,
+    handleSearchChange,
     isLoading,
     isError,
     error,

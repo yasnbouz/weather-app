@@ -5,7 +5,7 @@
     viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
-    class="w-6 h-6 justify-self-start text-gray-400"
+    class="w-6 h-6 justify-self-start"
     aria-hidden="true"
   >
     <path
