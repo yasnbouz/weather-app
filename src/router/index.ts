@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SearchForm from '@/components/SearchForm.vue'
+import SearchView from '@/views/SearchView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,12 +7,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'search',
-      component: SearchForm
+      component: SearchView
     },
     {
-      path: '/location/:id',
+      path: '/location',
       name: 'location',
-      component: () => import('@/components/WeatherViewer.vue')
+      component: () => import('@/views/LocationView.vue')
     }
   ]
 })

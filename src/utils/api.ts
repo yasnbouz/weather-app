@@ -1,7 +1,7 @@
 interface IGeoLocation {
   search: string
 }
-interface IWeatherData {
+interface ICoords {
   coord: { lon: string; lat: string }
 }
 
@@ -16,7 +16,7 @@ export async function getGeoLocation({ search }: IGeoLocation) {
   }
 }
 
-export async function getWeatherDataByCoord({ coord }: IWeatherData) {
+export async function getWeatherDataByCoord({ coord }: ICoords) {
   const { lat, lon } = coord
   if (lat && lon) {
     return await fetch(

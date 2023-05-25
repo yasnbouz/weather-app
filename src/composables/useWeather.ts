@@ -1,16 +1,16 @@
 import { computed, ref, watch } from 'vue'
-import { useDebounce } from '@vueuse/shared'
 import { getWeatherDataByCoord, getWeatherDataBySearch } from '@/utils/api'
 import * as dayjs from 'dayjs'
+import type { WeatherType } from '@/@types/weather'
+
+const search = ref('')
+const coord = ref<any>(null)
+const data = ref<WeatherType | null>(null)
+const isLoading = ref(false)
+const isError = ref(false)
+const error = ref()
 
 export default function useWeather() {
-  const search = ref('')
-  const coord = ref(null)
-  const data = ref(null)
-  const isLoading = ref(false)
-  const isError = ref(false)
-  const error = ref({})
-
   async function handleSearchChange() {
     try {
       if (search.value.length > 0) {
@@ -30,8 +30,9 @@ export default function useWeather() {
     () => coord.value,
     async (newCoord) => {
       try {
-        const { latitude: lat, longitude: lon } = newCoord
-        const result = await getWeatherDataByCoord({ coord: { lat, lon } })
+        const result = await getWeatherDataByCoord({
+          coord: { lat: newCoord?.latitude, lon: newCoord?.longitude }
+        })
         data.value = result
         isLoading.value = false
       } catch (err) {
@@ -45,8 +46,9 @@ export default function useWeather() {
   // internal helpers
   function handleGeoLocationWeather() {
     if (navigator) {
-      navigator.geolocation.getCurrentPosition(({ coords }) => {
-        coord.value = coords
+      navigator.geolocation.getCurrentPosition(({ coords }: GeolocationPosition) => {
+        const { latitude, longitude } = coords
+        coord.value = { latitude, longitude }
       })
     }
   }
@@ -74,7 +76,7 @@ export default function useWeather() {
     return ''
   }
   function generateWeatherDate() {
-    const day = dayjs.unix(data.value?.current.dt)
+    const day = dayjs.unix(data.value?.current.dt!)
     return day.format('dddd DD MMMM')
   }
   function generateWeatherTemperature() {
@@ -83,10 +85,10 @@ export default function useWeather() {
     const min = Number(data.value?.daily[0].temp.min).toFixed(1)
     return { current, max, min }
   }
-  function hectopascalToInches(value: any) {
+  function hectopascalToInches(value: number) {
     return Number(value * 0.0295300586).toFixed(2)
   }
-  function meterPerSecondTohour(value) {
+  function meterPerSecondTohour(value: number) {
     return Number(value * 2.23694).toFixed(1)
   }
   // normalizing data
@@ -97,12 +99,12 @@ export default function useWeather() {
     const date = generateWeatherDate()
     const temperature = generateWeatherTemperature()
 
-    const description = data.value?.current.weather[0].description
-    const status = data.value?.current.weather[0].main
-    const humidity = data.value?.current.humidity
-    const pressure = hectopascalToInches(data.value?.current.pressure)
-    const wind = meterPerSecondTohour(data.value?.current.wind_speed)
-    const percipitation = Number(data.value?.daily[0].pop).toFixed(2)
+    const description = data.value!.current.weather[0].description
+    const status = data.value!.current.weather[0].main
+    const humidity = data.value!.current.humidity
+    const pressure = hectopascalToInches(data.value!.current.pressure!)
+    const wind = meterPerSecondTohour(data.value!.current.wind_speed!)
+    const percipitation = Number(data.value!.daily[0].pop).toFixed(2)
     return {
       locationName,
       iconURL,
@@ -118,7 +120,7 @@ export default function useWeather() {
   })
   // hourly wweather
   const hourly = computed(() => {
-    return data.value?.hourly.slice(0, 7).map((item) => {
+    return data.value!.hourly.slice(0, 7).map((item) => {
       const time = dayjs.unix(item.dt).format('h a')
       const icon = item.weather[0].icon
       const iconURL = generateIconURL(icon, '2x')
@@ -129,7 +131,7 @@ export default function useWeather() {
   })
   // upcoming weather
   const upcoming = computed(() => {
-    return data.value?.daily.slice(1, 4).map((item) => {
+    return data.value!.daily.slice(1, 4).map((item) => {
       const icon = item.weather[0].icon
       const iconURL = generateIconURL(icon, '2x')
       const dayObj = dayjs.unix(item.dt)
