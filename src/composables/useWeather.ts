@@ -134,6 +134,7 @@ export default function useWeather() {
     return data.value!.daily.slice(1, 4).map((item) => {
       const icon = item.weather[0].icon
       const iconURL = generateIconURL(icon, '2x')
+      const description = item.weather[0].description
       const dayObj = dayjs.unix(item.dt)
       const day = dayObj.format('ddd')
       const date = dayObj.format('D/MM')
@@ -141,7 +142,7 @@ export default function useWeather() {
       const min = Number(item.temp.min).toFixed(1)
       const percipitation = Number(item.pop).toFixed(2)
       const wind = Number(item.wind_speed * 2.23694).toFixed(1)
-      return { iconURL, day, date, max, min, percipitation, wind }
+      return { iconURL, day, date, max, description, min, percipitation, wind }
     })
   })
   return {

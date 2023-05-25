@@ -1,10 +1,8 @@
 <template>
   <main>
     <nav class="mb-4">
-      <router-link to="/">
-        <HomeIcon
-          class="w-14 h-14 p-2 bg-gray-200 text-gray-900 shadow hover:bg-gray-300 transition-colors rounded-xl"
-        />
+      <router-link to="/" aria-label="back to home page">
+        <HomeIcon />
       </router-link>
     </nav>
     <template v-if="city">

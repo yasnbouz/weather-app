@@ -5,7 +5,7 @@ defineProps<{ weatherData: IWeatherData }>()
 <template>
   <section>
     <h2 class="text-xl text-gray-100 mt-8 pb-4">Today's weather</h2>
-    <ul class="grid grid-cols-[repeat(auto-fit,minmax(68px,1fr))] gap-4">
+    <ul class="grid grid-cols-[repeat(auto-fit,minmax(77px,1fr))] gap-4">
       <li
         v-for="item in weatherData?.hourly"
         v-bind:key="item"

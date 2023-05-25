@@ -7,10 +7,12 @@ defineProps<{ weatherData: IWeatherData }>()
   <p class="text-lg">{{ weatherData?.current.date }}</p>
   <div class="flex flex-col sm:flex-row justify-center divide-x-2 divide-gray-50 divide-opacity-40">
     <!-- left pane -->
-    <div class="flex gap-x-20 p-4">
+    <div class="flex md:gap-x-20 p-4">
       <span class="w-40">
         <img
           class="object-cover"
+          width="120"
+          height="120"
           :src="weatherData?.current.iconURL"
           :alt="weatherData?.current.description"
           loading="eager"

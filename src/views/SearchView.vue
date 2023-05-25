@@ -47,10 +47,8 @@ function clearData() {
       </div>
       <div v-else-if="data">
         <nav class="mb-4">
-          <button type="button" @click="clearData">
-            <HomeIcon
-              class="w-14 h-14 p-2 bg-gray-200 text-gray-900 shadow hover:bg-gray-300 transition-colors rounded-xl"
-            />
+          <button type="button" aria-label="back to home page" @click="clearData">
+            <HomeIcon />
           </button>
         </nav>
         <WeatherViewer

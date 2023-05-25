@@ -30,6 +30,7 @@ const { search, handleSearchChange, handleGeoLocationWeather } = useWeather()
       type="button"
       @click="handleGeoLocationWeather"
       class="text-gray-400 hover:text-green-500"
+      aria-label="enable geolocation weather"
     >
       <LocationIcon />
     </button>

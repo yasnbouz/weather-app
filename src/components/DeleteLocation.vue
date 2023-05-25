@@ -22,7 +22,7 @@ const isSaved = computed(() => {
   <button
     type="button"
     @click="deleteLocation"
-    class="absolute right-0 uppercase top-0 bg-red-500 transition-colors hover:bg-red-600 text-md font-bold rounded-bl-xl rounded-br-xl text-gray-900 px-4 py-2"
+    class="absolute right-0 uppercase top-0 text-white bg-red-600 transition-colors hover:bg-red-700 text-md font-bold rounded-bl-xl rounded-br-xl px-4 py-2"
     v-if="isSaved"
   >
     delete location
