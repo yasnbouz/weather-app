@@ -22,6 +22,11 @@ See [Production URL](https://weather-app-nu-jet.vercel.app//).
 
 - Pnpm: 8.1.1
 
+- create `.env` file and past the code below
+  ```
+  VITE_APPID=1e27683743d5b3b8c35c989284adaa47
+  ```
+
 ## Directory Structure
 
 - .github — GitHub configuration including the CI workflow.
@@ -35,13 +40,13 @@ See [Production URL](https://weather-app-nu-jet.vercel.app//).
 pnpm install
 ```
 
-### Starts the App in Development Environment
+### Start the App in Development Environment
 
 ```sh
 pnpm dev
 ```
 
-### Starts the App in Prodution Environment
+### Start the App in Prodution Environment
 
 ```sh
 pnpm build && pnpm preview
