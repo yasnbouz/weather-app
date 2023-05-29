@@ -10,11 +10,14 @@ See [Production URL](https://weather-app-nu-jet.vercel.app//).
 - ⚡️ Vue 3
 - ⛑ TypeScript
 - 👀 Vuex next time I'll use 🍍 pinia
+- ✨ TailwindCSS - For styling UI
 - 📏 ESLint — To find and fix problems in your code
+- 📆 Dayjs - For formating UTC time
 - 💖 Prettier — Code Formatter for consistent style
 - 🐶 Husky — For running scripts before committing
 - 🚫 lint-staged — Run ESLint and Prettier against staged Git files
-- 👷 PR Workflow — Run Build & E2E & Deploy on Pull Requests
+- 🎭 Playwright - For End to End Testing
+- 👷 CI/CD Workflow — Run Build & E2E & Deploy on Pull Requests
 
 ## Requirement
 
