@@ -9,14 +9,7 @@ defineProps<{ data: IWeatherData['current'] }>()
     <!-- left pane -->
     <div class="flex md:gap-x-20 p-4">
       <span class="w-40">
-        <img
-          class="object-cover"
-          width="120"
-          height="120"
-          :src="data?.iconURL"
-          :alt="data?.description"
-          loading="eager"
-        />
+        <img class="object-cover" width="120" height="120" :src="data?.iconURL" :alt="data?.description" loading="eager" />
       </span>
       <div class="text-center">
         <h2 class="text-8xl">{{ data?.temperature.current }}°</h2>

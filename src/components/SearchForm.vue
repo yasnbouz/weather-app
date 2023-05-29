@@ -9,12 +9,7 @@ const { search, handleSearchChange, handleGeoLocationWeather } = useWeather()
     for="search"
     class="w-full px-4 gap-x-4 rounded-md grid items-center shadow-lg grid-cols-[min-content_minmax(100px,_1fr)_40px] bg-white"
   >
-    <button
-      type="button"
-      aria-label="enter your city"
-      @click="handleSearchChange"
-      class="text-gray-400 hover:text-green-500"
-    >
+    <button type="button" aria-label="enter your city" @click="handleSearchChange" class="text-gray-400 hover:text-green-500">
       <SearchIcon />
     </button>
     <input

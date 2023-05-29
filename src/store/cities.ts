@@ -42,9 +42,7 @@ export const citiesStore = createStore<State>({
   mutations: {
     saveLocation(state: State, payload: IWeatherData) {
       const location = payload.current.locationName
-      const founded = state.cities.find(
-        (city: IWeatherData) => city.current.locationName === location
-      )
+      const founded = state.cities.find((city: IWeatherData) => city.current.locationName === location)
       if (!founded) {
         state.cities.push(payload)
       }

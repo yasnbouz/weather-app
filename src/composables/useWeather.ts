@@ -63,9 +63,7 @@ export default function useWeather() {
       name = search.value
         .replace(/,/g, '')
         .split(' ')
-        .map((word, i) =>
-          i === 1 ? word.toUpperCase() : word.charAt(0).toUpperCase() + word.slice(1)
-        )
+        .map((word, i) => (i === 1 ? word.toUpperCase() : word.charAt(0).toUpperCase() + word.slice(1)))
         .join(', ')
     }
     return name

@@ -17,14 +17,7 @@ defineProps<{ data: IWeatherData['upcoming'] }>()
           <time class="text-gray-300">{{ item.date }}</time>
         </div>
         <span>
-          <img
-            width="70"
-            height="70"
-            :src="item.iconURL"
-            :alt="item.description"
-            loading="lazy"
-            decoding="async"
-          />
+          <img width="70" height="70" :src="item.iconURL" :alt="item.description" loading="lazy" decoding="async" />
         </span>
         <div class="flex flex-col items-center">
           <p class="text-lg">{{ item.min }}°</p>
