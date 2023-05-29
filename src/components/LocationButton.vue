@@ -14,25 +14,24 @@ function deleteLocation() {
   store.commit('deleteLocation', props.weatherData?.current.locationName)
   router.replace('/')
 }
-const isSaved = computed(() => {
+const isLocationSaved = computed(() => {
   return store.getters.isSaved(props.weatherData?.current.locationName)
 })
+const buttonLocationText = computed(() =>
+  isLocationSaved.value ? 'delete location' : 'save location'
+)
 </script>
 <template>
   <button
     type="button"
-    @click="deleteLocation"
-    class="absolute right-0 uppercase top-0 text-white bg-red-600 transition-colors hover:bg-red-700 text-md font-bold rounded-bl-xl rounded-br-xl px-4 py-2"
-    v-if="isSaved"
+    @click="() => (isLocationSaved ? deleteLocation() : saveLocation())"
+    class="absolute right-0 uppercase top-0 transition-colors text-md font-bold rounded-bl-xl rounded-br-xl px-4 py-2"
+    :class="
+      isLocationSaved
+        ? 'text-white bg-red-600 hover:bg-red-700'
+        : 'text-gray-900 bg-yellow-500 hover:bg-yellow-600'
+    "
   >
-    delete location
-  </button>
-  <button
-    v-else
-    @click="saveLocation"
-    class="absolute right-0 uppercase top-0 bg-yellow-500 transition-colors hover:bg-yellow-600 text-md font-bold rounded-bl-xl rounded-br-xl text-gray-900 px-4 py-2"
-    type="button"
-  >
-    save location
+    {{ buttonLocationText }}
   </button>
 </template>

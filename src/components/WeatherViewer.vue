@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import DeleteLocation from '@/components/DeleteLocation.vue'
+import LocationButton from '@/components/LocationButton.vue'
 import CurrentWeather from '@/components/CurrentWeather.vue'
 import TodayWeather from '@/components/TodayWeather.vue'
 import ForecastWeather from '@/components/ForecastWeather.vue'
@@ -11,13 +11,13 @@ defineProps<{ weatherData: IWeatherData | undefined }>()
   <template v-if="weatherData">
     <section class="text-white">
       <!-- delete location -->
-      <DeleteLocation :weather-data="weatherData" />
+      <LocationButton :weather-data="weatherData" />
       <!-- Current weather -->
-      <CurrentWeather :weather-data="weatherData" />
+      <CurrentWeather :data="weatherData.current" />
       <!-- today weather -->
-      <TodayWeather :weather-data="weatherData" />
+      <TodayWeather :data="weatherData.hourly" />
       <!-- next 3 day's -->
-      <ForecastWeather :weather-data="weatherData" />
+      <ForecastWeather :data="weatherData.upcoming" />
     </section>
   </template>
 </template>
