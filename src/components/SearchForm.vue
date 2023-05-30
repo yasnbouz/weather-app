@@ -13,6 +13,7 @@ const { search, handleSearchChange, handleGeoLocationWeather } = useWeather()
       <SearchIcon />
     </button>
     <input
+      autofocus
       id="search"
       name="search"
       type="text"

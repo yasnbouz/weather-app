@@ -10,13 +10,12 @@ import HomeIcon from '@/icons/HomeIcon.vue'
 import { onMounted } from 'vue'
 const { search, isLoading, isError, error, data, current, upcoming, hourly, handleGeoLocationWeather } = useWeather()
 const store = useStore()
-const cities = computed(() => store.state.cities)
 
 onMounted(() => {
   handleGeoLocationWeather()
 })
 const filteredCities = computed(() => {
-  return cities.value
+  return store.state.cities
     .map((city: IWeatherData) => city.current.locationName)
     .filter((city: string) => city.toLowerCase().includes(search.value.toLowerCase()))
 })
