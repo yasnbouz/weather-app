@@ -2,7 +2,7 @@ interface IGeoLocation {
   search: string
 }
 interface ICoords {
-  coord: { lon: string; lat: string }
+  coord: { lon: number; lat: number }
 }
 
 export async function getGeoLocation({ search }: IGeoLocation) {

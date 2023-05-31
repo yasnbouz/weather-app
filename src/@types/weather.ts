@@ -6,6 +6,7 @@ export interface WeatherType {
   current: Current
   hourly: Current[]
   daily: Daily[]
+  city: SuggestedcCities
 }
 
 export interface Current {
@@ -69,4 +70,12 @@ export interface Temp {
   night: number
   eve: number
   morn: number
+}
+export interface SuggestedcCities {
+  name: string
+  local_names: { [key: string]: string }
+  lat: number
+  lon: number
+  country: string
+  state: string
 }

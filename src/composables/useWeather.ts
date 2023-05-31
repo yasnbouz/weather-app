@@ -1,9 +1,10 @@
 import { computed, ref, watch } from 'vue'
 import { getWeatherDataByCoord, getWeatherDataBySearch } from '@/utils/api'
 import * as dayjs from 'dayjs'
-import type { WeatherType } from '@/@types/weather'
+import type { SuggestedcCities, WeatherType } from '@/@types/weather'
 
 const search = ref('')
+const suggestedCities = ref<SuggestedcCities[]>([])
 const coord = ref<any>(null)
 const data = ref<WeatherType | null>(null)
 const isLoading = ref(false)
@@ -11,6 +12,23 @@ const isError = ref(false)
 const error = ref()
 
 export default function useWeather() {
+  async function handleClickingSuggestedCity(city: any) {
+    try {
+      if (search.value.length > 0) {
+        isLoading.value = true
+        const result = await getWeatherDataByCoord({ coord: { lat: city.lat, lon: city.lon } })
+        data.value = { ...result, city }
+        isError.value = false
+        isLoading.value = false
+      }
+    } catch (err) {
+      isError.value = true
+      data.value = null
+      isLoading.value = false
+      error.value = err
+    }
+  }
+
   async function handleSearchChange() {
     try {
       if (search.value.length > 0) {
@@ -60,11 +78,10 @@ export default function useWeather() {
   function generateLocationName() {
     let name = 'Your Location'
     if (search.value) {
-      name = search.value
-        .replace(/,/g, '')
-        .split(' ')
-        .map((word, i) => (i === 1 ? word.toUpperCase() : word.charAt(0).toUpperCase() + word.slice(1)))
-        .join(', ')
+      const city = data.value!.city.name
+      const state = data.value!.city?.state ?? ''
+      const country = data.value!.city?.country ?? ''
+      name = `${city} ${state} ${country}`
     }
     return name
   }
@@ -149,12 +166,14 @@ export default function useWeather() {
     search,
     handleGeoLocationWeather,
     handleSearchChange,
+    handleClickingSuggestedCity,
     isLoading,
     isError,
     error,
     data,
     current,
     upcoming,
-    hourly
+    hourly,
+    suggestedCities
   }
 }

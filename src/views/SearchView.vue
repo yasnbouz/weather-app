@@ -8,7 +8,7 @@ import useWeather from '@/composables/useWeather.js'
 import CityList from '@/components/CityList.vue'
 import HomeIcon from '@/icons/HomeIcon.vue'
 import { onMounted } from 'vue'
-const { search, isLoading, isError, error, data, current, upcoming, hourly, handleGeoLocationWeather } = useWeather()
+const { search, suggestedCities, isLoading, isError, error, data, current, upcoming, hourly, handleGeoLocationWeather } = useWeather()
 const store = useStore()
 
 onMounted(() => {
@@ -23,6 +23,7 @@ const filteredCities = computed(() => {
 function clearData() {
   data.value = null
   search.value = ''
+  suggestedCities.value = []
 }
 </script>
 

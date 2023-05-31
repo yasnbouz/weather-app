@@ -42,7 +42,9 @@ export const citiesStore = createStore<State>({
   mutations: {
     saveLocation(state: State, payload: IWeatherData) {
       const location = payload.current.locationName
-      const founded = state.cities.find((city: IWeatherData) => city.current.locationName === location)
+      const founded = state.cities.find(
+        (city: IWeatherData) => city.current.locationName.toLocaleLowerCase() === location.toLocaleLowerCase()
+      )
       if (!founded) {
         state.cities.push(payload)
       }
@@ -50,7 +52,7 @@ export const citiesStore = createStore<State>({
     deleteLocation(state: State, payload: string) {
       if (payload) {
         console.log(payload)
-        state.cities = state.cities.filter((city) => city.current.locationName !== payload)
+        state.cities = state.cities.filter((city) => city.current.locationName.toLocaleLowerCase() !== payload.toLocaleLowerCase())
       }
     }
   },
