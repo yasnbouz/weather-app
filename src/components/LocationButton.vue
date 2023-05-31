@@ -17,7 +17,6 @@ function deleteLocation() {
 const isLocationSaved = computed(() => {
   return store.getters.isSaved(props.weatherData?.current.locationName)
 })
-const buttonLocationText = computed(() => (isLocationSaved.value ? 'delete location' : 'save location'))
 </script>
 <template>
   <button
@@ -26,6 +25,6 @@ const buttonLocationText = computed(() => (isLocationSaved.value ? 'delete locat
     class="absolute right-0 uppercase top-0 transition-colors text-md font-bold rounded-bl-xl rounded-br-xl px-4 py-2"
     :class="isLocationSaved ? 'text-white bg-red-600 hover:bg-red-700' : 'text-gray-900 bg-yellow-500 hover:bg-yellow-600'"
   >
-    {{ buttonLocationText }}
+    {{ isLocationSaved ? 'delete location' : 'save location' }}
   </button>
 </template>

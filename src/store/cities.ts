@@ -49,6 +49,7 @@ export const citiesStore = createStore<State>({
     },
     deleteLocation(state: State, payload: string) {
       if (payload) {
+        console.log(payload)
         state.cities = state.cities.filter((city) => city.current.locationName !== payload)
       }
     }

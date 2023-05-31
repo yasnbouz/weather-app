@@ -12,7 +12,8 @@ const { search, isLoading, isError, error, data, current, upcoming, hourly, hand
 const store = useStore()
 
 onMounted(() => {
-  handleGeoLocationWeather()
+  // data.value = null
+  // handleGeoLocationWeather()
 })
 const filteredCities = computed(() => {
   return store.state.cities

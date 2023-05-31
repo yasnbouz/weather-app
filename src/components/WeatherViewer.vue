@@ -4,6 +4,8 @@ import CurrentWeather from '@/components/CurrentWeather.vue'
 import TodayWeather from '@/components/TodayWeather.vue'
 import ForecastWeather from '@/components/ForecastWeather.vue'
 import type { IWeatherData } from '@/store/cities'
+import { useStore } from 'vuex'
+import router from '@/router'
 
 defineProps<{ weatherData: IWeatherData | undefined }>()
 </script>
