@@ -2,33 +2,10 @@
 import SearchIcon from '@/icons/SearchIcon.vue'
 import LocationIcon from '@/icons/LocationIcon.vue'
 import useWeather from '@/composables/useWeather'
-import { getGeoLocation } from '@/utils/api'
+import { debounce } from '@/utils/helpers'
 const { search, suggestedCities, handleSearchChange, handleGeoLocationWeather, handleClickingSuggestedCity } = useWeather()
 
-async function handleChange() {
-  // fetching all amthed suggestedCitiesthen store theme in suggestedcities variable
-  const allMatchedcities = await getGeoLocation({ search: search.value })
-  // normalizing data
-  // displying name state country
-  // also gelolocation
-  if (allMatchedcities?.length > 0) {
-    suggestedCities.value = allMatchedcities
-  } else {
-    suggestedCities.value = []
-  }
-}
-const debounce = (fn: () => void, wait: number) => {
-  let timeoutID: any
-  return () => {
-    if (timeoutID) {
-      clearTimeout(timeoutID)
-    }
-    timeoutID = setTimeout(() => {
-      fn()
-    }, wait)
-  }
-}
-const debouncedHandleChange = debounce(handleChange, 1000)
+const debouncedHandleChange = debounce(handleSearchChange, 1000)
 </script>
 <template>
   <div class="relative">
@@ -36,9 +13,7 @@ const debouncedHandleChange = debounce(handleChange, 1000)
       for="search"
       class="w-full px-4 gap-x-4 rounded-md grid items-center shadow-lg grid-cols-[min-content_minmax(100px,_1fr)_40px] bg-white"
     >
-      <button type="button" aria-label="enter your city" @click="handleSearchChange" class="text-gray-400 hover:text-green-500">
-        <SearchIcon />
-      </button>
+      <SearchIcon />
       <input
         autofocus
         id="search"
@@ -46,8 +21,7 @@ const debouncedHandleChange = debounce(handleChange, 1000)
         type="text"
         @input="() => debouncedHandleChange()"
         v-model.trim="search"
-        placeholder="Search
-    for a city..."
+        placeholder="Search for a city..."
         class="bg-white outline-0 py-4 placeholder:text-gray-400"
       />
       <button

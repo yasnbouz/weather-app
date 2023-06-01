@@ -1,5 +1,5 @@
 import { computed, ref, watch } from 'vue'
-import { getWeatherDataByCoord, getWeatherDataBySearch } from '@/utils/api'
+import { getGeoLocation, getWeatherDataByCoord } from '@/utils/api'
 import * as dayjs from 'dayjs'
 import type { SuggestedcCities, WeatherType } from '@/@types/weather'
 
@@ -30,19 +30,15 @@ export default function useWeather() {
   }
 
   async function handleSearchChange() {
-    try {
-      if (search.value.length > 0) {
-        isLoading.value = true
-        const result = await getWeatherDataBySearch({ search: search.value })
-        data.value = result
-        isError.value = false
-        isLoading.value = false
-      }
-    } catch (err) {
-      isError.value = true
-      data.value = null
-      isLoading.value = false
-      error.value = err
+    // fetching all amthed suggestedCitiesthen store theme in suggestedcities variable
+    const allMatchedcities = await getGeoLocation({ search: search.value })
+    // normalizing data
+    // displying name state country
+    // also gelolocation
+    if (allMatchedcities?.length > 0) {
+      suggestedCities.value = allMatchedcities
+    } else {
+      suggestedCities.value = []
     }
   }
   watch(

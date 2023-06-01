@@ -7,14 +7,9 @@ import SearchForm from '@/components/SearchForm.vue'
 import useWeather from '@/composables/useWeather.js'
 import CityList from '@/components/CityList.vue'
 import HomeIcon from '@/icons/HomeIcon.vue'
-import { onMounted } from 'vue'
-const { search, suggestedCities, isLoading, isError, error, data, current, upcoming, hourly, handleGeoLocationWeather } = useWeather()
+const { search, suggestedCities, isLoading, isError, error, data, current, upcoming, hourly } = useWeather()
 const store = useStore()
 
-onMounted(() => {
-  // data.value = null
-  // handleGeoLocationWeather()
-})
 const filteredCities = computed(() => {
   return store.state.cities
     .map((city: IWeatherData) => city.current.locationName)

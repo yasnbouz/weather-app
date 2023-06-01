@@ -24,9 +24,3 @@ export async function getWeatherDataByCoord({ coord }: ICoords) {
     ).then((res) => res.json())
   }
 }
-export async function getWeatherDataBySearch({ search }: IGeoLocation) {
-  const geolocation = await getGeoLocation({ search })
-  const { lat, lon } = geolocation[0]
-  // fetch weather
-  return await getWeatherDataByCoord({ coord: { lat, lon } })
-}
