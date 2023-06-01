@@ -26,6 +26,7 @@ const debouncedHandleChange = debounce(handleSearchChange, 1000)
       />
       <button
         type="button"
+        data-testid="current-location"
         @click="handleGeoLocationWeather"
         class="text-gray-400 hover:text-green-500"
         aria-label="enable geolocation weather"
@@ -36,6 +37,7 @@ const debouncedHandleChange = debounce(handleSearchChange, 1000)
     <ul
       v-if="suggestedCities.length"
       class="flex z-10 flex-col justify-center bg-white overflow-y-auto max-h-[220px] shadow-xl mt-2 absolute right-0 left-0"
+      data-testid="search-list"
     >
       <li v-for="city in suggestedCities" :key="city.country">
         <button

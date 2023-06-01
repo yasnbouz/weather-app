@@ -2,13 +2,14 @@ import { test, expect } from '@playwright/test'
 import { describe } from 'node:test'
 
 test.use({
+  geolocation: { longitude: 12.492507, latitude: 41.889938 },
   permissions: ['geolocation']
 })
 describe('weather app', () => {
   test('fetch weather data for a current location', async ({ page, context }) => {
-    await context.setGeolocation({ longitude: 48.858455, latitude: 2.294474 })
-
     await page.goto('/')
+    await page.getByTestId('current-location').click()
+
     const locator = page.locator('h1')
     await expect(locator).toContainText('Your Location')
   })
@@ -16,13 +17,15 @@ describe('weather app', () => {
     await page.goto('/')
 
     const searched = 'london'
-    const expected = 'London'
     const textField = await page.getByPlaceholder('Search for a city...')
     await textField.fill(searched)
-    await textField.press('Enter')
+    // await textField.press('Enter')
+    const firstSuggestedLocation = await page.getByTestId('search-list').locator('> li > button')
+    const expectedLocation = await firstSuggestedLocation.first().textContent()
+    await firstSuggestedLocation.first().click()
 
     const locator = await page.locator('h1')
-    await expect(locator).toContainText(searched.at(0)?.toUpperCase() + searched.slice(1))
+    await expect(locator).toContainText(expectedLocation!)
 
     // save location
     const buttonSave = await page.getByRole('button', { name: 'save location' })
@@ -31,11 +34,11 @@ describe('weather app', () => {
     const homelink = await page.getByLabel('back to home page')
     await homelink.click()
 
-    const cityButton = await page.getByRole('button', { name: expected })
+    const cityButton = await page.getByRole('button', { name: expectedLocation! })
     await expect(cityButton).toBeAttached()
 
     // navigate to city page
-    await page.goto(`location?q=${expected}`)
+    await page.goto(`location?q=${expectedLocation}`)
 
     // delete location
     const buttonDelete = await page.getByRole('button', { name: 'delete location' })
