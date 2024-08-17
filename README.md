@@ -57,9 +57,7 @@ pnpm build && pnpm preview
 
 ## Brief Report
 
-Well, I've enjoyed building this app using Vue.js and Typescript, I really like how Reactivity works on Vue.js which makes handling state easy and clean by Isolating state outside of components.
-The hard thing I struggled with was when I started using "vuex" which used the wrong package.json export field, which break my building app.
-So I overcame this bug by patching the "vuex" package.
+I’ve really enjoyed building this app using Vue.js and TypeScript. I particularly appreciate how reactivity works in Vue.js, making state management easy and clean by isolating state outside of components. One challenge I faced was when I started using Vuex, which had an issue with the wrong package.json export field, causing my build to fail. I overcame this bug by patching the Vuex package.
 
 - Note: The Patched vuex will be installed immediately after `pnpm i`
 
